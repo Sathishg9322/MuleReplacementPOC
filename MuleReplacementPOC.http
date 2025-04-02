@@ -1,0 +1,6 @@
+@MuleReplacementPOC_HostAddress = http://localhost:5207
+
+GET {{MuleReplacementPOC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
