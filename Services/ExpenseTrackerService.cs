@@ -26,6 +26,19 @@ namespace MuleReplacementPOC.Services
             return JsonSerializer.Deserialize<List<Expense>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-   
+
+        public async Task<List<Expense>> GetExpensesByIdAsync(int id)
+        {
+            var apiUrl = _configuration["ExpenseAPI:BaseUrl"] +"/"+id;
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Failed to fetch data");
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Expense>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
+
     }
 }

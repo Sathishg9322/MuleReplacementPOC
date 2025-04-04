@@ -24,5 +24,15 @@ namespace MuleReplacementPOC.Controllers
         }
 
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetExpensesDetails(int id)
+        {
+            var expenses = await _service.GetExpensesByIdAsync(id);
+            return Ok(expenses);
+        }
+
+
+
+
     }
 }
